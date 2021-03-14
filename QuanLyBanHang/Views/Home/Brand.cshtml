@@ -1,0 +1,12 @@
+﻿@using QuanLyBanHang.Models;
+@{ 
+    IEnumerable<BrandsSl> lstBr = (IEnumerable<BrandsSl>)ViewBag.lstBr;
+}
+<div class="brands-name">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var item in lstBr)
+        {
+            <li><a href="#"> <span class="pull-right">@item.TennNhaSanXuat</span></a>(@item.SoluongTon)</li>
+        }
+    </ul>
+</div>
