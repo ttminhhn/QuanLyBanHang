@@ -1,0 +1,96 @@
+﻿@using QuanLyBanHang.Models;
+@model ItemGioHang
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+@{
+    List<ItemGioHang> lstGioHang = ViewBag.GioHang as List<ItemGioHang>;
+}
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td class="total"> Sử Giỏ Hàng</td>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in lstGioHang)
+                    {
+                        if (Model.MaSP == item.MaSP)
+                        {
+                            using (Html.BeginForm("CapNhatGioHang", "GioHang"))
+                            {
+                    <tr>
+                        <td class="cart_product">
+                            <a href=""><img src="@Url.Content("~/Content/images/home/"+item.HinhAnh)" alt=""></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="">@item.TenSP @Html.Hidden("MaSP", item.MaSP)</a></h4>
+                            <p>Web ID: @item.MaSP</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>@item.DonGia</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p class="cart_total_price">@Html.TextBox("SoLuong", @item.SoLuong)</p>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">@item.ThanhTien</p>
+                        </td>
+                        <td class="cart_delete">
+                            <input type="submit" value="Cập Nhật" />
+                        </td>
+                        <td class="cart_delete">
+                            @Html.ActionLink("Xóa Giỏ Hàng", "XoaGioHang", new { @MaSP = item.MaSP })
+                        </td>
+                    </tr>
+                            }
+                        }
+                        else
+                        {
+                <tr>
+                    <td class="cart_product">
+                        <a href=""><img src="@Url.Content("~/Content/images/home/"+item.HinhAnh)" alt=""></a>
+                    </td>
+                    <td class="cart_description">
+                        <h4><a href="">@item.TenSP</a></h4>
+                        <p>Web ID: @item.MaSP</p>
+                    </td>
+                    <td class="cart_price">
+                        <p>@item.DonGia</p>
+                    </td>
+                    <td class="cart_quantity">
+                        <p class="cart_total_price">@item.SoLuong </p>
+                    </td>
+                    <td class="cart_total">
+                        <p class="cart_total_price">@item.ThanhTien</p>
+                    </td>
+                    <td class="cart_delete">
+                        @Html.ActionLink("Cập Nhật", "SuaGioHang", new { @MaSP = item.MaSP })
+                    </td>
+                    <td class="cart_delete">
+                        @Html.ActionLink("Xóa Giỏ Hàng", "XoaGioHang", new { @MaSP = item.MaSP })
+                    </td>
+                </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->

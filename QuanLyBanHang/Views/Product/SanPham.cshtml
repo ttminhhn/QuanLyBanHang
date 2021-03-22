@@ -1,0 +1,39 @@
+﻿@using QuanLyBanHang.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
+}
+<div class="features_items">
+    <!--features_items-->
+    <h2 class="title text-center">Features Items</h2>
+    @foreach (var item in Model.OrderBy(n => n.DonGia))
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="@Url.Content("~/Content/images/home/"+item.HinhAnh)" alt="" />
+                        
+                        <h2>@item.DonGia</h2>
+                        <p>@item.TenSP</p>
+                        <a href="@Url.Action("ThemGioHang","GioHang",new {@MaSP=item.MaSP,@strUrl=Request.Url.ToString() })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart">Thêm vào giỏ </i></a>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <h2>@item.DonGia.Value.ToString("#,##")</h2>
+                            <p>Easy Polo Black Edition</p>
+                            <a href="@Url.Action("ThemGioHang","GioHang",new {@MaSP=item.MaSP,@strUrl=Request.Url.ToString() })" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div><!--features_items-->
+<ul class="pagination">
+    <li class="active"><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+    <li><a href="">&raquo;</a></li>
+</ul>

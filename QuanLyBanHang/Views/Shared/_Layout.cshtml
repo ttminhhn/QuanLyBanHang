@@ -92,8 +92,8 @@
                                 <li><a href=""><i class="fa fa-user"></i> Account</a></li>
                                 <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                <li>@Html.Action("GioHangPatial","GioHang")</li>
+                                <li><a href="@Url.Action("DangNhap","Home")"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -106,7 +106,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-9">
-                        <div class="navbar-header">
+                        @Html.Action("MenuPartial","Home")
+                        <!--<div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
@@ -133,9 +134,9 @@
                                         <li><a href="blog.html">Blog List</a></li>
                                         <li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
-                                </li>
+                                </li>-->
                                 @*@Html.Action("MenuPatial", "Home");*@
-                                @Html.Action("LoaiSanPhamPatial", "Home");
+                                <!--;-->
                                 @*<li class="dropdown">
             <a href="#">Brands<i class="fa fa-angle-down"></i></a>
             <ul role="menu" class="sub-menu">
@@ -143,10 +144,10 @@
                 <li><a href="blog-single.html">LuisVuiton</a></li>
             </ul>
         </li>*@
-                                <li><a href="404.html">404</a></li>
+                                <!--<li><a href="404.html">404</a></li>
                                 <li><a href="contact-us.html">Contact</a></li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
@@ -238,20 +239,6 @@
 
                         @Html.Action("Brand", "Home")
                     </div><!--/brands_products-->
-
-                        <div class="price-range">
-                            <!--price-range-->
-                            <h2>Price Range</h2>
-                            <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                            </div>
-                        </div><!--/price-range-->
-
-                        <div class="shipping text-center">
-                            <!--shipping-->
-                            <img src="~/Content/images/home/shipping.jpg" alt="" />
-                        </div><!--/shipping-->
 
                     </div>
                 </div>

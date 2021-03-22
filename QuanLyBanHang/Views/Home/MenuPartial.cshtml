@@ -1,0 +1,34 @@
+﻿@using QuanLyBanHang.Models;
+@model IEnumerable<SanPham>
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</div>
+<div class="mainmenu pull-left">
+    <ul class="nav navbar-nav collapse navbar-collapse">
+        <li><a href="@Url.Action("Index","Home")" class="active">Trang Chủ</a></li>
+        @foreach (var groupitem in Model.GroupBy(n => n.LoaiSanPham))
+        {
+            if (groupitem.Key != null)
+            {
+                <li class="dropdown">
+                    <a href="#">@groupitem.Key.TenLoaiSP<i class="fa fa-angle-down"></i></a>
+                    <ul role="menu" class="sub-menu">
+                        @foreach (var item in groupitem.GroupBy(n => n.NhaSanXuat))
+                        {
+                            if (item.Key != null)
+                            {
+                                <li><a href="@Url.Action("SanPham", "Product", new { @MaLoaiSP=groupitem.Key.MaLoaiSP, @MaNSX=item.Key.MaNSX})">@item.Key.TennNhaSanXuat</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        }
+        <li><a href="contact-us.html">Liên hệ</a></li>
+    </ul>
+</div>

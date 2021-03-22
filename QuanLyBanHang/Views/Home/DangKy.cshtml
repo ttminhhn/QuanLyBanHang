@@ -1,0 +1,46 @@
+﻿@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc; 
+@using QuanLyBanHang.Models;
+@model ThanhVien 
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
+}
+<h3 style="text-align:center">Đăng Ký tài khoản</h3>
+<div class="signup-form">
+    @using (Html.BeginForm("Dangky","Home",FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>Thông tin cá nhân </h2>
+                    <span>Họ và tên</span>
+                    @Html.TextBox("Hoten")
+                    <span>Địa chỉ</span>
+                    @Html.TextBox("DiaChi")
+                    <span>Email</span>
+                    @Html.TextBox("Email")
+                    <span>Số điện thoại</span>
+                    @Html.TextBox("SoDienThoai")
+                </div>
+                <div class="col-sm-4">
+                    <h2>Thông tin tài khoản</h2>
+                    <span>Tên tài khoản</span>
+                    @Html.TextBox("TaiKhoan")
+                    <span>Mật khẩu</span>
+                    @Html.Password("Matkhau")
+                    <span>Xác nhận mật khẩu</span>
+                    @Html.Password("comPassword")
+                    <span>Câu hỏi bí mật</span>
+                    @Html.DropDownList("Cauhoi");
+                    <span>Câu trả lời</span>
+                    @Html.TextBox("CauTraLoi")
+                    <span>Hãy xác nhận bạn không phải là người máy</span>
+                    @Html.Captcha(5)
+                    <button type="submit" class="btn btn-default">Đăng ký </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<h3>@ViewBag.Thongbao</h3>

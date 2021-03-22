@@ -35,6 +35,20 @@ namespace QuanLyBanHang.Controllers
             return View(sp);
             
         }
+        public ActionResult SanPham(int? MaLoaiSP, int? MaNSX)
+        {
+            if(MaLoaiSP== null || MaNSX == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            // Load sar pham theo 2 tieu chi ma loai san pham va ma nha san xuat
+            var lstSp = db.SanPhams.Where(n => n.MaLoaiSP == MaLoaiSP && n.MaNSX == MaNSX);
+            if(lstSp.Count()==0)
+            {
+                return HttpNotFound();
+            }
+            return View(lstSp);
+        }
 
         private ActionResult HttpStatusCodeResult(HttpStatusCode badRequest)
         {
